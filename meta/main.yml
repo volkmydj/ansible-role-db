@@ -1,0 +1,19 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: Aleksey Volkov
+  description: Deploy DB role
+  company: "MSVKS, LLC"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - xenial
+  galaxy_tags:
+    - database
+    - db
