@@ -5,11 +5,14 @@ driver:
   name: gce
 lint:
   name: yamllint
+  options:
+    config_data:
+      ignore: ".trais.yml"
 platforms:
   - name: instance
     zone: us-west1-a
     machine_type: f1-micro
-    image: debian-8
+    image: ubuntu-1604-xenial
 provisioner:
   name: ansible
   lint:
