@@ -1,16 +1,21 @@
 language: python
-python: '2.7'
+python: '3.6'
 sudo: false
 addons:
   apt:
     packages:
     - python-pip
 install:
-- pip install ansible
-- ansible --version
-- printf '[defaults]\nroles_path=../' >ansible.cfg
+- pip install ansible==2.3.0 molecule apache-libcloud
+# - ansible --version
+# - printf '[defaults]\nroles_path=../' >ansible.cfg
 script:
-- ansible-playbook molecule/gce_test/playbook.yml -i tests/inventory --syntax-check
+#- ansible-playbook molecule/gce_test/playbook.yml -i tests/inventory --syntax-check
+- molecule create
+- molecule converge
+- molecule verify
+after_script:
+- molecule destroy
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
   slack:
