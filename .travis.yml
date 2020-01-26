@@ -6,10 +6,11 @@ addons:
     packages:
     - python-pip
 install:
-- pip install ansible==2.9.0 molecule apache-libcloud
+- pip install ansible>=2.9.0 molecule apache-libcloud
 # - ansible --version
 # - printf '[defaults]\nroles_path=../' >ansible.cfg
 script:
+- molecule test --scenario-name gce_test
 #- ansible-playbook molecule/gce_test/playbook.yml -i tests/inventory --syntax-check
 - molecule create
 - molecule converge
