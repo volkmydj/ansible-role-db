@@ -16,3 +16,5 @@ vault.key
 .cache
 .pytest_cache
 secrets.tar
+google_compute_engine.*
+google_compute_engine
