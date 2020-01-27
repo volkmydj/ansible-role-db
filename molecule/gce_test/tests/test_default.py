@@ -20,10 +20,3 @@ def test_config_file(host):
 def test_mongo_listening_port(host):
     mongo_socket = host.socket("tcp://0.0.0.0:27017")
     assert mongo_socket.is_listening
-
-# def test_hosts_file(host):
-#     f = host.file('/etc/hosts')
-
-#     assert f.exists
-#     assert f.user == 'root'
-#     assert f.group == 'root'
