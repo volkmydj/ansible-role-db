@@ -3,7 +3,12 @@ python: '3.6'
 install:
 - pip install ansible>=2.4.0 molecule apache-libcloud paramiko
 script:
+# - molecule create
+# - molecule converge
+# - molecule verify
 - molecule test --scenario-name gce_test
+# after_script:
+# - molecule destroy
 env:
   matrix:
   - GCE_CREDENTIALS_FILE="$(pwd)/service_account.json"
