@@ -10,7 +10,7 @@ lint:
       ignore: ".travis.yml"
 platforms:
   - name: molecule-instance
-    zone: us-west1-a
+    zone: europe-west1-b
     machine_type: f1-micro
     image: ubuntu-1604-xenial
 provisioner:
