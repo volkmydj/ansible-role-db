@@ -8,3 +8,4 @@
 .cache
 .pytest_cache
 secrets.tar
+secrets-1.tar
