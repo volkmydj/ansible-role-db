@@ -2,14 +2,19 @@
 dependency:
   name: galaxy
 driver:
-  name: gce
+  name: vagrant
+provider:
+  name: virtualbox
 lint:
   name: yamllint
+  options:
+    config_data:
+      ignore: ".travis.yml"
 platforms:
-  - name: instance
+  - name: molecule-instance
     zone: us-west1-a
     machine_type: f1-micro
-    image: debian-8
+    image: ubuntu/xenial64
 provisioner:
   name: ansible
   lint:

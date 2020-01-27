@@ -9,7 +9,7 @@ lint:
     config_data:
       ignore: ".travis.yml"
 platforms:
-  - name: instance
+  - name: molecule-instance
     zone: us-west1-a
     machine_type: f1-micro
     image: ubuntu-1604-xenial

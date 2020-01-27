@@ -1,38 +1,30 @@
 language: python
 python: '3.6'
-sudo: false
-addons:
-  apt:
-    packages:
-    - python-pip
+# sudo: false
+# addons:
+#   apt:
+#     packages:
+#     - python-pip
 install:
-- pip install ansible>=2.9.0 molecule apache-libcloud
-# - ansible --version
-# - printf '[defaults]\nroles_path=../' >ansible.cfg
+- pip install ansible>=2.9.0 molecule apache-libcloud paramico
 script:
 - molecule test --scenario-name gce_test
-#- ansible-playbook molecule/gce_test/playbook.yml -i tests/inventory --syntax-check
-- molecule create
-- molecule converge
-- molecule verify
-after_script:
-- molecule destroy
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
-  slack:
-    rooms:
-      secure: 1TpE9EpfC6rlLCx5cn77ciMKatPX1EwV/zfUxrGmO7yNMa5LjCk6hacUUG2FMWoTvE7cxbGzu3J4kRFBaqmZJ+ya9XWLaZH0HGO5uDxNLtVMkAcH9AQtYU7Cr7gtHumH3rJVcG5kEXW6U4ra2PcPK4btROHNW3xucwCGTlL4iDupI1P1MQA2G2I+ZWVarcTLZz9qnsyRhMxp2DOr1xMcZUfpCMChM80cJR/15dR2K6rNa+9yPs/Nh1qsJa8gdJOw0Blqi5Uhuc3KnuZul/h1mPV0tn5RguhLDMYTCvVAxk6eQF0ZUpd3/VQOulNzXvdkgz1B5VExHzqBYQ1nY5rDChzDzLFQ94jW1g6ww03qQnCIgD1kiIlp3YheG4C4gqvloRiA0JTH7oVnd+nsAkecrbyUdJxnwg6iMbWGuRVjDMt1dBb+kneW/IL2DaG76N0eR6Y3MCGMWdqT8IjQWm2XlF/lmVvJ4WtDk8qXat7apHUBcDPgHK8LCm8ynWwbdiv5FCNxp304dWdwlqOnqBtCoRsFppZXHcR6MQX203v4qpMjdWjysyYM1Y5pi/M2ZRBCH256s7Dh+DA/q+wS7VPxgpIqBpXIXHMjj80r3mEiU6jaoJxb54nCReAwKUalSlgAyldiuII9kSOdZI+DkkaUgRPKS03uG5qT8DIM/YGhbwc=
 env:
   matrix:
-  - GCE_CREDENTIALS_FILE="$(pwd)/travis_gcp_key.json"
+  - GCE_CREDENTIALS_FILE="$(pwd)/credentials.json"
+
   global:
   - secure: YaryvzXYY4ecw+lyPbSFgvJE2a0eRHw+2VL4gCbFbdM3PU+9zOX0Q+9oxwaDtTd8BBQb3UVwQMcc20ra5HDrITEhki+bM3WvSX03v9LhNJ7eFzQgi3NvCrp6KHgf8EFb6kSQQSxX9+QMVnsgevVzhKlCX4nhHDE5f9w+Z5+GpJhTW6To41AfhHZvrYni3Qv8Nbs4/LuEkkAEND3mzTwmtvQmZaplINjss7MrENDeA9wk7nO42PU+DdfRsI8QJVPXrBHQLgrn2bcB4F4GpCpTbHZhFmDQAYrR5J2NooZ7QaN7F5JWCb/IvHec82aJPXofu8DT5YHdiez3qe61odYufpiAszr3B9pI7hCmYRPNBuO0JuSit/Ca4PDEGxgxPGBwPVZ62s63FXVq+QNzr0VlcTzt4IMDXEZYChQg+ubTSg0UJVFWgJLEEJyx8+C5v6RkmmbjtSC5U9khTx/qNMamSUFKHRAC3wApjD85teWM1wAj3ShrQfGeKYe9LkA+SC+mr+ozIVu+9jAekCv7hO72p/CDBnKZlk749JwqujQdJDsycqJRXGqw8DXcuhn/ZrYJQHEMEIduaLQCbJiNPwmKzRMU2HlIhbeCPpRmb9e3zAc3oM5/pG0MFfBlOziT4eFVN+jTbPIY2ibNCdo+ZUu3Hs2j3IdTGoNAGtqm0RcZSpM=
   - secure: MzJvzutevtWpLUMYPutt1gklnsaEL5dBeG5sKTZXVndpzF9NRJ51Eon15/zHgrAiHRamqH2eMf6xla5aTAqAUPhBMNqDnYBqFvmbtWIhbmvfqrRIUOIsOTuQIc2LqNqx9C2D4zM/rr6RnO+Lczid6nRQfFb6MYsUHoe2BcnNln30sFOMtOprc9XuWQTkCQA9+fOnLk1fT/uzHl3uHqQTp2fB+qdOUI81hQNcBoFA9iXRSZ8AGZdZjKyoiYSVT9LaIDaJMvrgRKNtaA4Fd85niF/lRls2hYVc7/c8pvKgy5okgn3qbNX/brFHKf58M9LONqQV+i+du/H9IE2U8GuTCID5f39WXTuhYhttzxHk0q4ekHkK9qdVXE/6pZ4TBl7RmtkcrN8/PQsM1M+4DNLqFC3kVzayqeqGDusuI28IAP9LiJ6rLJXzystO6CEVZ7Mvc+6KHXz+r9dWmo3JTtuAJTmqXvtVXD3Yo8ow2pooH7zbcxSUNv9aAQe2AUkBdwv162nYsgje2Fq9ChVXjjl97zVQTi5Ok+n9rXBjxz5XefE2SpG8OYd1vkePFX0J5kztNafxPS4MzevHIFIgeLl/+XBkPL7H7TCMPfCSI6UNiyUJqJLBPAiGhuWnBSot2BWfGwLA7Fe0ykYPWoDseg1rTEhJgOiANEJHgWA6lpCKCNE=
   - secure: aeiy9odC7T4QoigQorKdHXgPHfb97b0AScpiRf9dl/NpZm1uXDBBChf7P8pJ2FmydMPGTW/9CqkV4BWZZg48UZV2X9DL9c1dJVeFuyx82p0iSCkftOVf9Gd5SmIZxGKQZCEZauTtYtjAfIEIhEnMS/npcYlTgHcRCLczvjtkZShKsNHQyzv/aRp0oiW2EmfsuUvT7YlH+N8BopPijCbRjTnhWkGZO5bBzqtLzYKNwXxI6oF1j3YI9gYALY1EYJAUReJMyiq2/hFPSJUvZiXpTghY3/kccfEhYFDCiduwJF2BWmgH3ajpmKz0yEPdFnfE9MVO0yhbto8lavLaifuYGZZLfUhxwXy9ECv2e1TruaozKPVT3KuxunQLu9iAQFqYQYRrx8WLYI3lKXr9mkyS8dUWyccXkEsVk9G3oFVpZ87dokUW+KaS2S3TlXADRANWwHZvIs6Bi4BBdWs/oXtEvzIYUr5kIzLlnJISUv4HgvXYY59m+GKHpkJsjTGr86HL4YDbkhwufMB67KggWA/JFmrnU1c/hiI1Fyt7vKYQAwRB7vUbyfxzV1+Nl7smUr6HTfEm+GBPKNRqVlfQVeeBITlwme8n1w3DL66G4ukH/+Zw65X/Or/rMorGejV90QnAji68HeWIzfTy6QDo4w1PoZfBSQ40fKovOUv5gqdRPU0=
 before_install:
-
 - openssl aes-256-cbc -K $encrypted_f8b49578091d_key -iv $encrypted_f8b49578091d_iv
   -in secrets.tar.enc -out secrets.tar -d
 - tar xvf secrets.tar
 - mv google_compute_engine /home/travis/.ssh/
 - chmod 0600 /home/travis/.ssh/google_compute_engine
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  slack:
+    rooms:
+      secure: 1TpE9EpfC6rlLCx5cn77ciMKatPX1EwV/zfUxrGmO7yNMa5LjCk6hacUUG2FMWoTvE7cxbGzu3J4kRFBaqmZJ+ya9XWLaZH0HGO5uDxNLtVMkAcH9AQtYU7Cr7gtHumH3rJVcG5kEXW6U4ra2PcPK4btROHNW3xucwCGTlL4iDupI1P1MQA2G2I+ZWVarcTLZz9qnsyRhMxp2DOr1xMcZUfpCMChM80cJR/15dR2K6rNa+9yPs/Nh1qsJa8gdJOw0Blqi5Uhuc3KnuZul/h1mPV0tn5RguhLDMYTCvVAxk6eQF0ZUpd3/VQOulNzXvdkgz1B5VExHzqBYQ1nY5rDChzDzLFQ94jW1g6ww03qQnCIgD1kiIlp3YheG4C4gqvloRiA0JTH7oVnd+nsAkecrbyUdJxnwg6iMbWGuRVjDMt1dBb+kneW/IL2DaG76N0eR6Y3MCGMWdqT8IjQWm2XlF/lmVvJ4WtDk8qXat7apHUBcDPgHK8LCm8ynWwbdiv5FCNxp304dWdwlqOnqBtCoRsFppZXHcR6MQX203v4qpMjdWjysyYM1Y5pi/M2ZRBCH256s7Dh+DA/q+wS7VPxgpIqBpXIXHMjj80r3mEiU6jaoJxb54nCReAwKUalSlgAyldiuII9kSOdZI+DkkaUgRPKS03uG5qT8DIM/YGhbwc=
