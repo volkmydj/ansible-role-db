@@ -15,6 +15,7 @@ platforms:
     image: ubuntu-1604-xenial
 provisioner:
   name: ansible
+  log: true
   lint:
     name: ansible-lint
 verifier:
