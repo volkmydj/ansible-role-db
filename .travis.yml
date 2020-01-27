@@ -6,7 +6,7 @@ python: '3.6'
 #     packages:
 #     - python-pip
 install:
-- pip install ansible>=2.9.0 molecule apache-libcloud paramico
+- pip install ansible>=2.4.0 molecule apache-libcloud paramiko
 script:
 - molecule test --scenario-name gce_test
 env:
