@@ -7,7 +7,7 @@ lint:
   name: yamllint
   options:
     config_data:
-      ignore: ".trais.yml"
+      ignore: ".travis.yml"
 platforms:
   - name: instance
     zone: us-west1-a
