@@ -16,7 +16,7 @@ before_install:
   -in secrets-1.tar.enc -out secrets-1.tar -d
 - openssl aes-256-cbc -K $encrypted_f8b49578091d_key -iv $encrypted_f8b49578091d_iv
   -in secrets-1.tar.enc -out secrets-1.tar -d
-- tar xvf secrets.tar
+- tar xvf secrets-1.tar
 - mv google_compute_engine /home/travis/.ssh/
 - chmod 0600 /home/travis/.ssh/google_compute_engine
 notifications:
