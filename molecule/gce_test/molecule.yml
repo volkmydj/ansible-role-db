@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
   options:
-    config_data:
+    config-data:
       ignore: ".travis.yml"
 platforms:
   - name: molecule-instance
